@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Manager | Admin</title>
+    <link rel="stylesheet" href="manager.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Admin Dashboard</h1>
+            <nav>
+                <a href="attendance manager.html">Mark Attendance</a>
+                <a href="admin.html" class="active">Admin Dashboard</a>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Attendance Records</h2>
+            <div class="filter-section">
+                <label for="dateFilter">Filter by date:</label>
+                <input type="date" id="dateFilter">
+                <button id="loadRecords" class="btn-primary">Load</button>
+                <button id="refreshAll" class="btn-secondary">Refresh All</button>
+            </div>
+            <div class="table-wrapper">
+                <table id="attendanceTable">
+                    <thead>
+                        <tr>
+                            <th>Employee</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceBody">
+                        <tr><td colspan="4" class="loading">Loading records...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="manager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllAttendance();
+            document.getElementById('loadRecords').addEventListener('click', filterByDate);
+            document.getElementById('refreshAll').addEventListener('click', loadAllAttendance);
+            document.getElementById('dateFilter').valueAsDate = new Date();
+        });
+    </script>
+</body>
+  </html>
